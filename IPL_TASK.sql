@@ -23,5 +23,6 @@ where year(m.match_date)=2016
 --STEP 7 — Grouping the data
 group by m.match_date,d.playing_batsman_team
 
---STEP 8 — Sorting the results
+--STEP 8 — Sorting the result
 order by m.match_date,d.playing_batsman_team;
+
