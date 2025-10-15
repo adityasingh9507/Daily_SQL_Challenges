@@ -19,14 +19,14 @@ Parallelly, I’m applying learning on realistic business datasets across custom
 
 ## 📂 Repository Structure
 
-### 📘 01_Foundations  
-Covers basics — `SELECT`, `WHERE`, `ORDER BY`, `CASE WHEN`, text/date manipulations, etc.
+Current files & practice examples:
+- `Day_1_SQL.sql` — basic table/create & simple SELECT tasks
+- `Day_2_SQL.sql` — month-wise sales / purchase-year report
+- `Day_3_SQL.sql` — testing & misc practice queries
+- `IPL_TASK.sql` — IPL / cricket analysis using window functions
+- `PIVOT Practice.sql` — pivot/unpivot practice queries
+- `README.md` — project overview (this file)
 
-### 📗 02_Intermediate  
-Focus on `JOINS`, `GROUP BY`, `HAVING`, subqueries, filtering strategies, etc.
-
-### 📙 03_Advanced  
-Advanced techniques — `CTEs`, Window Functions (`ROW_NUMBER`, `RANK`, `LEAD`, `LAG`, etc.), analytics patterns.
 
 ### 🧩 Projects  
 Real-world SQL projects applying analytics:
