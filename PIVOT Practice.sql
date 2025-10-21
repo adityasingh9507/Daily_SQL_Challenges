@@ -15,7 +15,7 @@ select * from cte1
 where Total_sales>(select avg(Total_sales) as national_avg from cte1)
 
 --2.
---you have been asked to create a state-wise report of top 3 cities by sales,
+--you have been asked to create a state-wise report of top 3 cities by sale,
 --which will be used by the Sales Leadership to identify high-performing territories
 --and reward Area Sales Managers accordingly.
 
@@ -65,3 +65,4 @@ sum(runs) over (partition by datepart(year, match_date),datepart(month, match_da
 from sachin_data
 
 order by match_date;
+
