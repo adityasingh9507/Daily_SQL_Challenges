@@ -26,3 +26,48 @@ group by m.match_date,d.playing_batsman_team
 --STEP 8 — Sorting the result
 order by m.match_date,d.playing_batsman_team;
 
+
+
+
+
+--Write an SQL query to display Sachin’s monthly performance summary, including:
+--1.Total runs and total balls faced per month.
+--2.Batting average (runs/balls * 100).
+--3.Rank months by total runs (highest first).
+--4.Identify performance level using CASE WHEN:
+--      "Outstanding" if total runs ≥ 300
+--      "Good" if total runs between 200–299
+--        "Average" otherwise
+--5.Include the running total of runs month-by-month (using window function).
+--6.Display only months from 1998.
+----------------------------------------------------------
+
+-- creating a common table expression (cte) to summarize sachin's monthly runs and balls
+with monthly_summary as (
+select
+datepart(year, mtch_date) as match_year,
+datepart(month, mtch_date) as match_month,
+sum(runs) as total_runs,
+sum(balls) as total_balls
+from sachin_scores
+where datepart(year, mtch_date) = 1998
+group by datepart(year, mtch_date), datepart(month, mtch_date)
+)
+-- now calculate performance details using the summarized data
+select
+match_year,
+match_month,
+total_runs,
+total_balls,
+-- calculate strike rate as (runs / balls) * 100
+round((total_runs * 100.0 / total_balls), 2) as strike_rate,
+-- categorize performance based on total runs using case when
+case when total_runs >= 300 then 'outstanding'
+      when total_runs between 200 and 299 then 'good'
+      else 'average' end as performance_level,
+-- calculate cumulative (running) total of runs month by month
+sum(total_runs) over (order by match_month) as running_total_runs,
+-- rank each month based on total runs (highest first)
+rank() over (order by total_runs desc) as month_rank
+from monthly_summary
+order by match_month;
