@@ -11,7 +11,7 @@ join ex_locations l on c.postal_code=l.postal_code
 group by l.state
 )
 select * from cte1
---The national average will be the average of the Total Sales column
+--The national average will be the average of the Total Sales columns
 where Total_sales>(select avg(Total_sales) as national_avg from cte1)
 
 --2.
@@ -63,4 +63,5 @@ datepart(day, match_date) as match_day,runs,
 sum(runs) over (partition by datepart(year, match_date),datepart(month, match_date) order by match_date
     ) as mtd_runs
 from sachin_data
+
 order by match_date;
